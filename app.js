@@ -5,7 +5,7 @@ let msgContainer = document.querySelector(".msg-container");
 let msg= document.querySelector("#msg");
 
 let turnO = true;//playerX playerO
-
+let count=0;
 const winPattern = [
     [0,1,2],
     [0,3,6],
@@ -18,6 +18,7 @@ const winPattern = [
 ];
 
 const resetGame = () => {
+    count=0;
     turnO=true;
     enableBoxes();
     msgContainer.classList.add("hide");
@@ -34,7 +35,10 @@ boxes.forEach((box)=> {
             turnO=true;
         }
         box.disabled=true;
-
+        count++;
+        if(count == 9) {
+            resetGame();
+        }
         checkWinner();
     })
 });
